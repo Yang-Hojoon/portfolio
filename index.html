@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>양호준 | Web Publisher & UI Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --bg-card: #f7f7f7;
+  --bg-tag: #f0f0f0;
+  --black: #111111;
+  --gray: #888888;
+  --gray-light: #cccccc;
+  --border: #e8e8e8;
+  --accent: #5B5BF6;
+  --accent-light: #eeeeff;
+  --font-en: 'Poppins', sans-serif;
+  --font-ko: 'Noto Sans KR', sans-serif;
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-ko);
+  background: var(--bg);
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+  height: 68px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-en);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.nav-links { display: flex; gap: 8px; list-style: none; }
+.nav-links a {
+  font-family: var(--font-en);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--gray);
+  text-decoration: none;
+  padding: 7px 16px;
+  border-radius: 100px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover { background: var(--bg-card); color: var(--black); }
+.nav-links a.active {
+  color: var(--accent);
+  background: var(--accent-light);
+}
+.nav-cta {
+  font-family: var(--font-en);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+  text-decoration: none;
+  padding: 9px 22px;
+  border: 1.5px solid var(--black);
+  border-radius: 100px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--black); color: #fff; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  padding: 120px 60px 80px;
+  display: flex;
+  align-items: center;
+}
+.hero-left { max-width: 680px; }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-en);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+.hero-tag-dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.hero-greeting {
+  font-family: var(--font-en);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.hero-name {
+  font-family: var(--font-en);
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+.hero-name .accent { color: var(--accent); }
+.hero-role {
+  font-family: var(--font-en);
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 400;
+  color: var(--gray);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.hero-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.85;
+  max-width: 440px;
+  margin-bottom: 40px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 30px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-outline {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 14px 30px;
+  background: transparent;
+  color: var(--black);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.btn-outline:hover { border-color: var(--black); }
+.hero-scroll {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-en);
+  font-size: 12px;
+  color: var(--gray-light);
+  letter-spacing: 0.06em;
+}
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gray-light);
+}
+
+/* ── SECTION COMMON ── */
+section { padding: 100px 60px; scroll-margin-top: 68px; }
+.section-header { margin-bottom: 48px; }
+.section-eyebrow {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--font-en);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+/* ── ABOUT ── */
+#about { background: var(--bg); }
+.about-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.about-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.about-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 56px;
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  border-color: rgba(91, 91, 246, 0.3);
+}
+.about-card-label {
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.about-card-text {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--black);
+  line-height: 1.85;
+}
+.about-card-text strong { font-weight: 500; }
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.stat-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  padding: 40px 32px;
+  border: 1px solid var(--border);
+}
+.stat-number {
+  font-family: var(--font-en);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-number span { color: var(--accent); }
+.stat-label {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gray);
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--bg); padding: 60px 60px 100px; }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.skill-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 40px 32px;
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.skill-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  border-color: rgba(91, 91, 246, 0.3);
+}
+.skill-card-title {
+  font-family: var(--font-en);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag {
+  font-family: var(--font-en);
+  font-size: 12px;
+  font-weight: 400;
+  padding: 6px 14px;
+  background: var(--bg);
+  color: var(--black);
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* ── WORKS ── */
+#works { background: var(--bg); padding: 0; }
+.works-layout {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  align-items: start;
+}
+
+/* 왼쪽: sticky 목차 */
+.works-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px 60px 60px;
+}
+.works-mobile-header { display: none; }
+.works-tabs-mobile { display: none; }
+.works-section-label {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.works-section-title {
+  font-family: var(--font-en);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 40px;
+}
+.wt-item {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+  transition: opacity 0.3s;
+  opacity: 0.3;
+}
+.wt-item:last-child { border-bottom: 1px solid var(--border); }
+.wt-item.active { opacity: 1; }
+.wt-num {
+  font-family: var(--font-en);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-light);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+  transition: color 0.3s;
+}
+.wt-item.active .wt-num { color: var(--accent); }
+.wt-name {
+  font-family: var(--font-en);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+.wt-sub {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--gray);
+}
+
+/* 오른쪽: 카드 세로 나열 */
+.works-right {
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.works-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.works-card.active { border-color: var(--border); }
+.works-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  border-color: rgba(91, 91, 246, 0.3);
+}
+.wc-thumb {
+  aspect-ratio: 5/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-en);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.wt-museum { background-color: #EAE8E3; color: #6b6560; }
+.wt-ticket { background-color: #F0E6E6; color: #7a5555; }
+.wt-snap   { background-color: #E6EAF2; color: #505a78; }
+.wt-daiso  { background-color: #E6F0E9; color: #4f6e57; }
+.wc-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 5px 12px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 100px;
+  color: var(--black);
+  backdrop-filter: blur(4px);
+}
+.wc-body {
+  padding: 28px 32px 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+.wc-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.wc-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gray);
+}
+.wc-feature::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.wc-title {
+  font-family: var(--font-en);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.wc-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.work-tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.wtag {
+  font-family: var(--font-en);
+  font-size: 11px;
+  padding: 3px 10px;
+  background: var(--bg-tag);
+  border-radius: 100px;
+  color: var(--gray);
+}
+.wc-link {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  background: var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.wc-link:hover { background: var(--accent); }
+.wc-links-row {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.wc-link-plan {
+  width: 36px; height: 36px;
+  background: var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  transition: background 0.2s;
+}
+.wc-link-plan:hover { background: var(--accent); }
+
+/* ── CONTACT ── */
+#contact { background: var(--bg-card); padding: 160px 60px; }
+.contact-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.contact-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-top: 20px;
+  margin-bottom: 0;
+  max-width: 480px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 20px; }
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 28px 32px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  border-color: rgba(91, 91, 246, 0.3);
+}
+.contact-icon {
+  width: 48px; height: 48px;
+  background: var(--accent-light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.contact-info {}
+.contact-type {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.contact-value {
+  font-family: var(--font-en);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--black);
+}
+.contact-chevron {
+  margin-left: auto;
+  font-size: 20px;
+  color: var(--gray-light);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 28px 60px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy {
+  font-family: var(--font-en);
+  font-size: 12px;
+  color: var(--gray-light);
+}
+.footer-name {
+  font-family: var(--font-en);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ── HERO ANIMATION ── */
+.hero-anim {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroIn 0.7s ease forwards;
+  animation-delay: var(--delay);
+}
+@keyframes heroIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HERO TEXT MASK ── */
+.hero-mask {
+  overflow: hidden;
+  display: block;
+}
+.hero-mask-inner {
+  display: block;
+  transform: translateY(110%);
+  animation: maskUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay);
+}
+@keyframes maskUp {
+  to { transform: translateY(0); }
+}
+
+/* ── SCROLL 선 흘러내리기 ── */
+.hero-scroll {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-en);
+  font-size: 12px;
+  color: var(--gray-light);
+  letter-spacing: 0.06em;
+  opacity: 0;
+  animation: heroIn 0.7s ease forwards;
+  animation-delay: 1s;
+}
+.scroll-line {
+  width: 200px;
+  height: 1px;
+  background: var(--gray-light);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--black);
+  animation: scrollFlow 1.8s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+@keyframes scrollFlow {
+  0%   { left: -100%; }
+  50%  { left: 0%; }
+  100% { left: 100%; }
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── TABLET ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #hero { padding: 200px 40px 60px; min-height: 60vh; align-items: flex-start; }
+  .works-layout { grid-template-columns: 260px 1fr; }
+  .works-left { padding: 60px 24px 60px 32px; }
+  .works-right { padding: 40px 32px; }
+  .works-section-title { font-size: 24px; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-cta { font-size: 12px; padding: 7px 16px; }
+
+  #hero { padding: 180px 24px 48px; min-height: 60vh; align-items: flex-start; }
+  .btn-primary, .btn-outline { font-size: 13px; padding: 11px 22px; }
+  .hero-left { max-width: 100%; }
+  .hero-name { font-size: 40px; }
+  .hero-role { font-size: 18px; }
+  .hero-desc { font-size: 14px; margin-bottom: 28px; }
+  .hero-scroll { margin-top: 36px; }
+
+  section { padding: 56px 24px; }
+  #skills { padding: 40px 24px 56px; }
+  #contact { padding: 56px 24px; }
+  .section-header { margin-bottom: 32px; }
+
+  .about-grid { gap: 20px; }
+  .about-cards-row { grid-template-columns: 1fr; gap: 16px; }
+  .about-card { padding: 32px 28px; }
+  .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card { padding: 24px 20px; }
+  .stat-number { font-size: 28px; }
+
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .skill-card { padding: 24px 20px; }
+  .skill-card-title { font-size: 15px; margin-bottom: 14px; }
+  .skill-tags { gap: 6px; }
+
+  .works-mobile-header { display: block; }
+  .works-tabs-mobile { display: flex; }
+  .works-left { display: none !important; }
+  #works { padding: 56px 0; }
+  .works-mobile-header { padding: 0 24px 0; }
+  .works-mobile-header .works-section-title { margin-bottom: 20px; font-size: 28px; }
+  .works-mobile-header .section-eyebrow { display: block; }
+  .works-tabs-mobile {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 0 24px 20px;
+    scrollbar-width: none;
+  }
+  .works-tabs-mobile::-webkit-scrollbar { display: none; }
+  .works-tab-mobile {
+    flex-shrink: 0;
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    color: var(--gray);
+    background: var(--bg);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .works-tab-mobile.active {
+    background: var(--black);
+    color: #fff;
+    border-color: var(--black);
+  }
+  .works-layout { display: block !important; width: 100%; }
+  .works-right { display: block; width: 100%; padding: 0 24px; box-sizing: border-box; }
+  .works-card { display: none !important; width: 100%; box-sizing: border-box; }
+  .works-card.active { display: block !important; width: 100%; }
+  .wc-body { padding: 20px; }
+  .wc-title { font-size: 15px; }
+
+  .contact-inner { gap: 32px; }
+  .contact-card { padding: 20px 24px; }
+  .contact-value { font-size: 14px; }
+
+  footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">HJ.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag hero-anim" style="--delay: 0s">
+      <span class="hero-tag-dot"></span>
+      Available for work
+    </div>
+    <span class="hero-mask" style="--delay: 0.1s">
+      <p class="hero-greeting hero-mask-inner" style="--delay: 0.1s">안녕하세요</p>
+    </span>
+    <span class="hero-mask" style="--delay: 0.2s">
+      <h1 class="hero-name hero-mask-inner" style="--delay: 0.2s">양호준<span style="font-size: clamp(20px, 2.5vw, 32px); font-weight: 400; color: var(--gray); letter-spacing: 0; margin-left: 8px;">입니다.</span></h1>
+    </span>
+    <span class="hero-mask">
+      <p class="hero-role hero-mask-inner" style="--delay: 0.35s">Web Publisher & <span style="color: var(--accent);">UI Designer</span></p>
+    </span>
+    <p class="hero-desc hero-anim" style="--delay: 0.55s">
+      사용자 경험을 고민하는 웹 퍼블리셔.<br>
+      깔끔한 마크업과 섬세한 UI로<br>완성도 있는 웹을 만듭니다.
+    </p>
+    <div class="hero-btns hero-anim" style="--delay: 0.7s">
+      <a href="#works" class="btn-primary">Works 보기</a>
+      <a href="https://github.com/" target="_blank" class="btn-outline">GitHub ↗</a>
+    </div>
+    <div class="hero-scroll">
+      <span class="scroll-line"></span>
+      SCROLL
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-in">
+    <p class="section-eyebrow">About me</p>
+    <h2 class="section-title">저를 소개합니다</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-cards-row">
+      <div class="about-card fade-in">
+        <p class="about-card-label">Background</p>
+        <p class="about-card-text">
+          그린컴퓨터아카데미에서 UI/UX 웹퍼블리셔 과정을 수강하며 기획, 디자인, 프론트엔드 구현까지 웹 개발 전반을 학습했습니다.<br><br>
+          <strong>HTML, CSS, JavaScript, jQuery, React, PHP</strong>를 익히며 사용자 경험을 고려한 웹 서비스 제작 과정을 몸으로 배웠습니다.
+        </p>
+      </div>
+      <div class="about-card fade-in">
+        <p class="about-card-label">Goal</p>
+        <p class="about-card-text">
+          사용자의 불편을 발견하고 이를 더 나은 경험으로 개선하는 <strong>UX 기획자</strong>가 목표입니다.<br><br>
+          사용자 리서치와 데이터를 기반으로 문제를 정의하고, 사용자에게 더 나은 경험을 제공하는 일을 하고 싶습니다.
+        </p>
+      </div>
+    </div>
+    <div class="about-stats fade-in">
+      <div class="stat-card">
+        <div class="stat-number">4<span>+</span></div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1<span>년+</span></div>
+        <div class="stat-label">공부 중</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <p class="section-eyebrow">Skills</p>
+    <h2 class="section-title">기술 스택</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Core Skills</div>
+      <div class="skill-tags">
+        <span class="skill-tag">UI/UX Layout</span>
+        <span class="skill-tag">Frontend Dev</span>
+        <span class="skill-tag">Responsive Design</span>
+        <span class="skill-tag">Component-Based</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Frontend Tech</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">jQuery</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">PHP</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Design Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">Illustrator</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Tools & Etc</div>
+      <div class="skill-tags">
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Vercel</span>
+        <span class="skill-tag">Dothome</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="works-mobile-header">
+    <p class="section-eyebrow">Works</p>
+    <h2 class="works-section-title">프로젝트</h2>
+  </div>
+  <div class="works-tabs-mobile">
+    <button class="works-tab-mobile active" data-index="0">국립중앙박물관</button>
+    <button class="works-tab-mobile" data-index="1">SnapPin</button>
+    <button class="works-tab-mobile" data-index="2">다이소 앱</button>
+    <button class="works-tab-mobile" data-index="3">대학로티켓</button>
+  </div>
+  <div class="works-layout">
+
+    <!-- 왼쪽: sticky 목차 -->
+    <div class="works-left">
+      <p class="works-section-label">Works</p>
+      <h2 class="works-section-title">프로젝트</h2>
+      <div class="wt-item active" data-index="0">
+        <div class="wt-num">01</div>
+        <div class="wt-name">국립중앙박물관 리뉴얼</div>
+        <div class="wt-sub">반응형 웹사이트 퍼블리싱</div>
+      </div>
+      <div class="wt-item" data-index="1">
+        <div class="wt-num">02</div>
+        <div class="wt-name">SnapPin</div>
+        <div class="wt-sub">React SNS · Vercel 배포</div>
+      </div>
+      <div class="wt-item" data-index="2">
+        <div class="wt-num">03</div>
+        <div class="wt-name">다이소 앱 리뉴얼</div>
+        <div class="wt-sub">모바일 UI 리디자인</div>
+      </div>
+      <div class="wt-item" data-index="3">
+        <div class="wt-num">04</div>
+        <div class="wt-name">대학로티켓 리뉴얼</div>
+        <div class="wt-sub">팀 프로젝트 · React</div>
+      </div>
+    </div>
+
+    <!-- 오른쪽: 카드 세로 나열 -->
+    <div class="works-right">
+
+      <div class="works-card active" id="wc-0">
+        <div class="wc-thumb wt-museum" style="background-image: url('images/National_Museum_of_Korea_Thumbnail.jpg');">
+          <span class="wc-badge">HTML · CSS · JS</span>
+        </div>
+        <div class="wc-body">
+          <div>
+            <div class="wc-title">국립중앙박물관 리뉴얼</div>
+            <p class="wc-desc">반응형 웹사이트 퍼블리싱. IntersectionObserver 스크롤 인터랙션, 메가 메뉴 슬라이드 애니메이션, 슬라이더 구현.</p>
+            <div class="wc-features">
+              <span class="wc-feature">IntersectionObserver 기반 스크롤스파이 sticky 네비게이션</span>
+              <span class="wc-feature">메가 메뉴 슬라이드 애니메이션 및 모바일 아코디언</span>
+              <span class="wc-feature">HIGHLIGHTS 벤토 그리드 섹션 구현</span>
+              <span class="wc-feature">모바일 하단 네비게이션 바 및 TOP 버튼</span>
+            </div>
+            <div class="work-tag-row"><span class="wtag">HTML</span><span class="wtag">CSS</span><span class="wtag">JavaScript</span><span class="wtag">반응형</span></div>
+          </div>
+          <div class="wc-links-row">
+            <a href="https://hojoon99.dothome.co.kr/National_Museum_of_Korea/main.html" target="_blank" class="wc-link" title="사이트 보기">↗</a>
+            <a href="https://drive.google.com/file/d/1Q73GF9pysh7OSnR0PAo1U79DVQBG1LPi/view?usp=drive_link" target="_blank" class="wc-link-plan" title="기획서 보기">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="works-card" id="wc-1">
+        <div class="wc-thumb wt-snap" style="background-image: url('images/SnapPin_Thumbnail.png');">
+          <span class="wc-badge">배포 완료</span>
+        </div>
+        <div class="wc-body">
+          <div>
+            <div class="wc-title">SnapPin</div>
+            <p class="wc-desc">지도 기반 포토스팟 공유 SNS. Vite + React + Leaflet으로 제작, Vercel 배포. 클러스터 뱃지, 마스너리 그리드 구현.</p>
+            <div class="wc-features">
+              <span class="wc-feature">Nominatim API 주소 검색 및 지도 핀 등록</span>
+              <span class="wc-feature">도시·지역 필터 칩 및 클러스터 뱃지 색상 그라데이션</span>
+              <span class="wc-feature">2열 마스너리 포토 그리드 레이아웃</span>
+              <span class="wc-feature">MiniMap 네비게이션 및 Vercel 배포</span>
+            </div>
+            <div class="work-tag-row"><span class="wtag">React</span><span class="wtag">Leaflet</span><span class="wtag">Vite</span><span class="wtag">Vercel</span></div>
+          </div>
+          <div class="wc-links-row">
+            <a href="https://snappin-hojoon.vercel.app" target="_blank" class="wc-link" title="사이트 보기">↗</a>
+            <a href="https://drive.google.com/file/d/154iBYBlJSrQpcnvZJMlcYUFEE0OJIWqJ/view?usp=drive_link" target="_blank" class="wc-link-plan" title="기획서 보기">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="works-card" id="wc-2">
+        <div class="wc-thumb wt-daiso" style="background-image: url('images/Daiso_Renewal_Thumbnail.png');">
+          <span class="wc-badge">모바일 UI</span>
+        </div>
+        <div class="wc-body">
+          <div>
+            <div class="wc-title">다이소 앱 리뉴얼</div>
+            <p class="wc-desc">모바일 앱 UI 리디자인. 사용성 개선을 중심으로 한 화면 설계 및 HTML/CSS 퍼블리싱.</p>
+            <div class="wc-features">
+              <span class="wc-feature">기존 앱 UX 문제점 분석 및 개선 방향 도출</span>
+              <span class="wc-feature">모바일 퍼스트 화면 설계 및 와이어프레임</span>
+              <span class="wc-feature">HTML/CSS 멀티 페이지 퍼블리싱</span>
+              <span class="wc-feature">터치 친화적 UI 컴포넌트 설계</span>
+            </div>
+            <div class="work-tag-row"><span class="wtag">HTML</span><span class="wtag">CSS</span><span class="wtag">모바일</span></div>
+          </div>
+          <div class="wc-links-row">
+            <a href="https://yang-hojoon.github.io/daiso-renewal/mdev_yhj.html" target="_blank" class="wc-link" title="사이트 보기">↗</a>
+            <a href="https://drive.google.com/file/d/1hShBWLqD3mGCNkPJlVci5jtQ5KWSDvPJ/view?usp=drive_link" target="_blank" class="wc-link-plan" title="기획서 보기">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="works-card" id="wc-3">
+        <div class="wc-thumb wt-ticket" style="background-image: url('images/Daehakro_Ticket_Thumbnail.png');">
+          <span class="wc-badge">팀 프로젝트</span>
+        </div>
+        <div class="wc-body">
+          <div>
+            <div class="wc-title">대학로티켓 리뉴얼</div>
+            <p class="wc-desc">4인 팀 프로젝트. 모바일 퍼스트 예매·결제 페이지 담당. React 컴포넌트 구조 설계 및 GitHub 협업.</p>
+            <div class="wc-features">
+              <span class="wc-feature">예매 날짜·좌석·인원 선택 UI 구현</span>
+              <span class="wc-feature">공유 컴포넌트(SubPage, useOutletContext) 연동</span>
+              <span class="wc-feature">모바일 퍼스트 border-radius 100px 선택 버튼 디자인</span>
+              <span class="wc-feature">GitHub Desktop으로 팀 브랜치 협업</span>
+            </div>
+            <div class="work-tag-row"><span class="wtag">React</span><span class="wtag">Mobile First</span><span class="wtag">GitHub</span><span class="wtag">팀 프로젝트</span></div>
+          </div>
+          <div class="wc-links-row">
+            <a href="https://team-third.vercel.app/" target="_blank" class="wc-link" title="사이트 보기">↗</a>
+            <a href="https://drive.google.com/file/d/1uosVchGvvuVpUUR3LNOf0XDNknRy4DCA/view?usp=drive_link" target="_blank" class="wc-link-plan" title="기획서 보기">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-title">함께 만들어요</h2>
+      <p class="contact-sub">
+        프로젝트 협업, 채용 문의 모두 환영합니다.<br>
+        언제든지 편하게 연락 주세요.
+      </p>
+    </div>
+    <div class="contact-links">
+      <div class="contact-card fade-in">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-info">
+          <p class="contact-type">Email</p>
+          <p class="contact-value">yhj990326@naver.com</p>
+        </div>
+      </div>
+      <a href="https://github.com/" target="_blank" class="contact-card fade-in">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="#5B5BF6"/>
+          </svg>
+        </div>
+        <div class="contact-info">
+          <p class="contact-type">GitHub</p>
+          <p class="contact-value">github.com/hojoon</p>
+        </div>
+        <span class="contact-chevron">›</span>
+      </a>
+      <a href="#" download class="contact-card fade-in">
+        <div class="contact-icon">📄</div>
+        <div class="contact-info">
+          <p class="contact-type">Resume</p>
+          <p class="contact-value">이력서 다운로드</p>
+        </div>
+        <span class="contact-chevron">↓</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Yang Hojoon. All rights reserved.</span>
+  <span class="footer-name">HJ.</span>
+</footer>
+
+<script>
+const scrollProgress = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = (window.scrollY / total) * 100;
+  scrollProgress.style.width = pct + '%';
+}, { passive: true });
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.25 });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+
+function updateActiveNav() {
+  const scrollY = window.scrollY + 80;
+  let current = '';
+  sections.forEach(sec => {
+    if (scrollY >= sec.offsetTop) current = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
+
+const wtItems = document.querySelectorAll('.wt-item');
+const wcCards = document.querySelectorAll('.works-card');
+const mobileTabs = document.querySelectorAll('.works-tab-mobile');
+
+function activateIndex(idx) {
+  wtItems.forEach((el, i) => el.classList.toggle('active', i === idx));
+  wcCards.forEach((el, i) => el.classList.toggle('active', i === idx));
+  mobileTabs.forEach((el, i) => el.classList.toggle('active', i === idx));
+}
+
+wtItems.forEach((el, i) => {
+  el.addEventListener('click', () => {
+    activateIndex(i);
+    document.getElementById('wc-' + i).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+
+mobileTabs.forEach((el, i) => {
+  el.addEventListener('click', () => activateIndex(i));
+});
+
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = parseInt(entry.target.id.replace('wc-', ''));
+      activateIndex(idx);
+    }
+  });
+}, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
+
+wcCards.forEach(card => cardObserver.observe(card));
+</script>
+</body>
+</html>
