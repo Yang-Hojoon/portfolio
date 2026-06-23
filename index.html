@@ -220,21 +220,15 @@ section { padding: 100px 60px; scroll-margin-top: 68px; }
 }
 .about-cards-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0;
 }
 .about-card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  padding: 56px;
-  border: 1px solid var(--border);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  padding: 8px 48px;
 }
-.about-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(91, 91, 246, 0.1);
-  border-color: rgba(60, 60, 100, 0.18);
-}
+.about-card:first-child { padding-left: 0; }
+.about-card:nth-child(3) { padding-right: 0; }
+.about-card-divider { background: var(--border); }
 .about-card-label {
   font-family: var(--font-en);
   font-size: 16px;
@@ -810,8 +804,11 @@ footer {
   .section-header { margin-bottom: 32px; }
 
   .about-grid { gap: 20px; }
-  .about-cards-row { grid-template-columns: 1fr; gap: 16px; }
-  .about-card { padding: 32px 28px; }
+  .about-cards-row { grid-template-columns: 1fr; gap: 0; }
+  .about-card { padding: 24px 0; }
+  .about-card:first-child { padding-top: 0; }
+  .about-card:nth-child(3) { padding-bottom: 0; }
+  .about-card-divider { height: 1px; width: 100%; }
   .about-philosophy { padding: 32px 28px; }
   .philosophy-quote { font-size: 20px; }
   .philosophy-text { font-size: 14px; }
@@ -940,6 +937,7 @@ footer {
           <strong>HTML, CSS, JavaScript, jQuery, React, PHP</strong>를 익히며 사용자 경험을 고려한 웹 서비스 제작 과정을 몸으로 배웠습니다.
         </p>
       </div>
+      <div class="about-card-divider"></div>
       <div class="about-card fade-in">
         <p class="about-card-label">Goal</p>
         <p class="about-card-text">
